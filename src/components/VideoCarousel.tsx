@@ -1,16 +1,9 @@
 import { SyntheticEvent, useEffect, useRef, useState } from "react";
-import {
-  highlightFirstVideo,
-  highlightSecondVideo,
-  highlightThirdVideo,
-  highlightFourthVideo,
-  replayImg,
-  playImg,
-  pauseImg,
-} from "../utils";
+import { replayImg, playImg, pauseImg } from "../utils";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/all";
+import { hightlightsSlides } from "../utils/Constants";
 
 gsap.registerPlugin(ScrollTrigger);
 const VideoCarousel = () => {
@@ -243,38 +236,3 @@ const VideoCarousel = () => {
 };
 
 export default VideoCarousel;
-
-const hightlightsSlides = [
-  {
-    id: 1,
-    textLists: [
-      "Enter A17 Pro.",
-      "Game‑changing chip.",
-      "Groundbreaking performance.",
-    ],
-    video: highlightFirstVideo,
-    videoDuration: 4,
-  },
-  {
-    id: 2,
-    textLists: ["Titanium.", "So strong. So light. So Pro."],
-    video: highlightSecondVideo,
-    videoDuration: 5,
-  },
-  {
-    id: 3,
-    textLists: [
-      "iPhone 15 Pro Max has the",
-      "longest optical zoom in",
-      "iPhone ever. Far out.",
-    ],
-    video: highlightThirdVideo,
-    videoDuration: 2,
-  },
-  {
-    id: 4,
-    textLists: ["All-new Action button.", "What will yours do?."],
-    video: highlightFourthVideo,
-    videoDuration: 3.63,
-  },
-];
