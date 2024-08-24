@@ -94,12 +94,9 @@ const VideoCarousel = () => {
     });
     gsap.to("#video", {
       scrollTrigger: {
-        onEnter: () => {
-          console.log("entered");
-        },
-        trigger: "video",
-        start: "top top",
+        trigger: "#video",
         toggleActions: "restart none none none",
+        start: "top top",
       },
       onComplete: () => {},
     });
