@@ -6,6 +6,7 @@ import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
 import { View } from "@react-three/drei";
 import { models, sizes } from "../utils/Constants";
+import { animateWithGsapTimeline } from "../utils/animations";
 
 const Model = () => {
   const [size, setSize] = useState("small");
@@ -14,14 +15,27 @@ const Model = () => {
   const cameraControlSmallPhone = useRef();
   const cameraControlLargePhone = useRef();
 
-  const smallPhone = useRef(new THREE.Group());
-  const largePhone = useRef(new THREE.Group());
+  const smallPhone = useRef<any>(new THREE.Group());
+  const largePhone = useRef<any>(new THREE.Group());
 
-  //Rotation
-  const [smallPhoneRotation, setSmallPhoneRotation] = useState(0);
-  const [largePhoneRotation, setLargePhoneRotation] = useState(0);
+  const timeline = gsap.timeline();
 
-  useEffect(() => {}, [smallPhoneRotation, largePhoneRotation]);
+  useEffect(() => {
+    if (size === "large") {
+      console.log("is larege");
+      animateWithGsapTimeline(timeline, "#view1", "#view2", {
+        transform: "translateX(-100%)",
+        duration: 2,
+      });
+    }
+    if (size === "small") {
+      console.log("is small");
+      animateWithGsapTimeline(timeline, "#view2", "#view1", {
+        transform: "translateX(0)",
+        duration: 2,
+      });
+    }
+  }, [size]);
 
   useGSAP(() => {
     gsap.to("#heading", {
@@ -42,7 +56,6 @@ const Model = () => {
               groupRef={smallPhone}
               gsapType="view1"
               controlRef={cameraControlSmallPhone}
-              setRotationState={setSmallPhoneRotation}
               item={model}
               size={size}
             />
@@ -51,7 +64,6 @@ const Model = () => {
               groupRef={largePhone}
               gsapType="view2"
               controlRef={cameraControlLargePhone}
-              setRotationState={setLargePhoneRotation}
               item={model}
               size={size}
             />
@@ -66,7 +78,7 @@ const Model = () => {
           </div>
 
           <div className="mx-auto w-full">
-            <p className="text-sm font-light text-center mb-5">{model.title}</p>
+            <p className=" font-light text-center mb-5">{model.title}</p>
             <div className="flex-center">
               <ul className="color-container ">
                 {models.map((model, index) => (

@@ -14,21 +14,12 @@ const ModelView: React.FC<{
   setRotationState: React.Dispatch<React.SetStateAction<number>>;
   item: ModelData;
   size: string;
-}> = ({
-  index,
-  groupRef,
-  gsapType,
-  controlRef,
-  setRotationState,
-  size,
-  item,
-}) => {
-  console.log(typeof controlRef.current);
+}> = ({ index, groupRef, gsapType, controlRef, size, item }) => {
   return (
     <View
       index={index}
       id={gsapType}
-      className={`border-2 border-red-500 w-full h-full ${
+      className={` w-full h-full absolute ease-in-out  ${
         index == 2 ? "right-[-100%]" : ""
       }`}
     >
@@ -42,7 +33,6 @@ const ModelView: React.FC<{
         enablePan={false}
         rotateSpeed={0.4}
         target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationState(controlRef.current?.getAzimuthalAngle())}
       />
       <group ref={groupRef} name={`${index === 1 ? "small" : "large"}`}>
         <IphoneModel
