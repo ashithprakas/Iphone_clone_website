@@ -8,8 +8,9 @@ import {
   highlightSecondVideo,
   highlightThirdVideo,
 } from ".";
+import { ModelData } from "../interfaces/Models.interface";
 
-export const models = [
+export const models: Array<ModelData> = [
   {
     id: 1,
     title: "iPhone 15 Pro in Natural Titanium",

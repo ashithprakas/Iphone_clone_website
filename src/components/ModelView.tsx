@@ -2,30 +2,32 @@ import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
 import React, { MutableRefObject, Suspense } from "react";
 import { Group, Object3DEventMap } from "three";
 import Lights from "./Lights";
-import Model from "./Iphone";
+import IphoneModel from "./Iphone";
 import * as THREE from "three";
+import { ModelData } from "../interfaces/Models.interface";
 
 const ModelView: React.FC<{
   index: number;
   groupRef: MutableRefObject<Group<Object3DEventMap>>;
   gsapType: string;
-  controlRef: MutableRefObject<undefined>;
-  setRotationState: any;
-  item: any;
+  controlRef: MutableRefObject<typeof OrbitControls.$$typeof>;
+  setRotationState: React.Dispatch<React.SetStateAction<number>>;
+  item: ModelData;
   size: string;
 }> = ({
   index,
   groupRef,
-  gspaType,
+  gsapType,
   controlRef,
-  setRotationSize,
+  setRotationState,
   size,
   item,
 }) => {
+  console.log(typeof controlRef.current);
   return (
     <View
       index={index}
-      id={gspaType}
+      id={gsapType}
       className={`border-2 border-red-500 w-full h-full ${
         index == 2 ? "right-[-100%]" : ""
       }`}
@@ -40,11 +42,10 @@ const ModelView: React.FC<{
         enablePan={false}
         rotateSpeed={0.4}
         target={new THREE.Vector3(0, 0, 0)}
-        onEnd={() => setRotationSize(controlRef.current?.getAzimuthalAngle())}
+        onEnd={() => setRotationState(controlRef.current?.getAzimuthalAngle())}
       />
       <group ref={groupRef} name={`${index === 1 ? "small" : "large"}`}>
-        <Suspense fallback={<div>Loading</div>} />
-        <Model
+        <IphoneModel
           scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
           item={item}
           size={size}
