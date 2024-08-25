@@ -17,7 +17,7 @@ function IphoneModel(props: {
   item: ModelData;
   size: string;
 }) {
-  const { nodes, materials } = useGLTF("../../public/models/scene.glb");
+  const { nodes, materials } = useGLTF("./models/scene.glb");
   const texture = useTexture(props.item.img);
 
   useEffect(() => {
@@ -260,6 +260,6 @@ function IphoneModel(props: {
   );
 }
 
-useGLTF.preload("../../public/models/scene.glb");
+useGLTF.preload("./models/scene.glb");
 
 export default IphoneModel;
