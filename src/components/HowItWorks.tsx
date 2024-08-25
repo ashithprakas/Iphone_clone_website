@@ -32,7 +32,7 @@ const HowItWorks = () => {
     );
   }, []);
   return (
-    <section>
+    <section className="overflow-hidden">
       <div className="common-padding">
         <div className="screen-max-width">
           <div id="chip" className="flex-center w-full my-20">
