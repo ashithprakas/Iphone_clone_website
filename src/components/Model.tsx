@@ -12,8 +12,8 @@ const Model = () => {
   const [size, setSize] = useState("small");
   const [model, setModel] = useState(models[0]);
 
-  const cameraControlSmallPhone = useRef();
-  const cameraControlLargePhone = useRef();
+  const cameraControlSmallPhone = useRef<any>();
+  const cameraControlLargePhone = useRef<any>();
 
   const smallPhone = useRef<any>(new THREE.Group());
   const largePhone = useRef<any>(new THREE.Group());

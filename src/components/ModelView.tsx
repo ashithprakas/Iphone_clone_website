@@ -1,6 +1,5 @@
 import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
-import React, { MutableRefObject, Suspense } from "react";
-import { Group, Object3DEventMap } from "three";
+import React, { MutableRefObject } from "react";
 import Lights from "./Lights";
 import IphoneModel from "./Iphone";
 import * as THREE from "three";
@@ -8,10 +7,9 @@ import { ModelData } from "../interfaces/Models.interface";
 
 const ModelView: React.FC<{
   index: number;
-  groupRef: MutableRefObject<Group<Object3DEventMap>>;
+  groupRef: MutableRefObject<any>;
   gsapType: string;
-  controlRef: MutableRefObject<typeof OrbitControls.$$typeof>;
-  setRotationState: React.Dispatch<React.SetStateAction<number>>;
+  controlRef: MutableRefObject<any>;
   item: ModelData;
   size: string;
 }> = ({ index, groupRef, gsapType, controlRef, size, item }) => {
